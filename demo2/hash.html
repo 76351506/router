@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> HashDemo </title>
+</head>
+
+<body>
+  <ul>
+    <!-- 定义路由 -->
+    <li><a href="#/home">home</a></li>
+    <li><a href="#/about">about</a></li>
+
+    <!-- 渲染路由对应的 UI -->
+    <div id="routeView"></div>
+  </ul>
+  <script type="text/javascript">
+    class HashRouter {
+      constructor() {
+        this.init()
+      }
+      init() {
+        window.addEventListener('DOMContentLoaded', () => this.onload(), false)
+        window.addEventListener('hashchange', () => this.onHashChange(), false)
+      }
+      onload() {
+        this.routerView = document.querySelector('#routeView');
+        this.onHashChange()
+      }
+      onHashChange() {
+        console.log(this)
+        switch (location.hash) {
+          case '#/home':
+            this.routerView.innerHTML = 'Home'
+            return
+          case '#/about':
+            this.routerView.innerHTML = 'About'
+            return
+          default:
+            return
+        }
+      }
+    }
+    const Router = new HashRouter();
+  </script>
+
+</body>
+
+</html>
